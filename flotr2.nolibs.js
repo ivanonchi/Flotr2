@@ -327,6 +327,7 @@ Flotr.defaultOptions = {
     backgroundImage: null, // => background image. String or object with src, left and top
     watermarkAlpha: 0.4,   // => 
     tickColor: '#DDDDDD',  // => color used for the ticks
+    tickWidth: 1,          // => line width used for the ticks in pixels
     labelMargin: 3,        // => margin in pixels
     verticalLines: true,   // => whether to show gridlines in vertical direction
     minorVerticalLines: null, // => whether to show gridlines for minor ticks in vertical dir.
@@ -1487,7 +1488,7 @@ Graph.prototype = {
       touchendHandler = _.bind(function (e) {
         touchend = true;
         E.stopObserving(document, 'touchend', touchendHandler);
-        E.fire(el, 'flotr:mouseup', [event, this]);
+        E.fire(el, 'flotr:mouseup', [e, this]);
         this.multitouches = null;
 
         if (!movement) {
@@ -1504,7 +1505,7 @@ Graph.prototype = {
           this.multitouches = e.touches;
         }
 
-        E.fire(el, 'flotr:mousedown', [event, this]);
+        E.fire(el, 'flotr:mousedown', [e, this]);
         this.observe(document, 'touchend', touchendHandler);
       }, this));
 
@@ -1522,7 +1523,7 @@ Graph.prototype = {
           this.multitouches = e.touches;
         } else {
           if (!touchend) {
-            E.fire(el, 'flotr:mousemove', [event, pos, this]);
+            E.fire(el, 'flotr:mousemove', [e, pos, this]);
           }
         }
         this.lastMousePos = pos;
@@ -4121,7 +4122,7 @@ Flotr.addPlugin('graphGrid', {
       E.fire(this.el, 'flotr:beforegrid', [this.axes.x, this.axes.y, options, this]);
     }
     ctx.save();
-    ctx.lineWidth = 1;
+    ctx.lineWidth = grid.tickWidth;
     ctx.strokeStyle = grid.tickColor;
     
     function circularHorizontalTicks (ticks) {

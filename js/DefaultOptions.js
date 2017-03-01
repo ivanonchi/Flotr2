@@ -72,6 +72,7 @@ Flotr.defaultOptions = {
     backgroundImage: null, // => background image. String or object with src, left and top
     watermarkAlpha: 0.4,   // => 
     tickColor: '#DDDDDD',  // => color used for the ticks
+    tickWidth: 1,          // => line width used for the ticks in pixels
     labelMargin: 3,        // => margin in pixels
     verticalLines: true,   // => whether to show gridlines in vertical direction
     minorVerticalLines: null, // => whether to show gridlines for minor ticks in vertical dir.

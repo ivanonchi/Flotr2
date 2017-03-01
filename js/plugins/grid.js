@@ -33,7 +33,7 @@ Flotr.addPlugin('graphGrid', {
       E.fire(this.el, 'flotr:beforegrid', [this.axes.x, this.axes.y, options, this]);
     }
     ctx.save();
-    ctx.lineWidth = 1;
+    ctx.lineWidth = grid.tickWidth;
     ctx.strokeStyle = grid.tickColor;
     
     function circularHorizontalTicks (ticks) {
